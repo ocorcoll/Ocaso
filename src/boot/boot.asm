@@ -1,20 +1,17 @@
-; Sets the BIOS routine
-mov ah,0x0e
+; Base address
+[org 0x7c00]
 
-; Print characters:
-mov al,'O'
-int 0x10
-mov al,'r'
-int 0x10
-mov al,'i'
-int 0x10
-mov al,'o'
-int 0x10
-mov al,'l'
-int 0x10
+    ; Print initial message
+    mov bx,INITIAL_MSG
+    call print_string
 
-; Jump forever
-jmp $
+    ; Jump forever
+    jmp $
+
+%include "src/boot/print_string.asm"
+
+INITIAL_MSG:
+    db 'Loading Ocaso OS...',0
 
 ; Padding of 0s
 times 510-($-$$) db 0
