@@ -10,9 +10,8 @@ print_string:
     ; Print loop
     loop:
         ; Checks if it is the end of the string
-        cmp word [bx],0
-        je end
-
+        cmp byte [bx],0
+        je end_loop
         ; Print character
         mov al,[bx]
         int 0x10
@@ -20,6 +19,7 @@ print_string:
         inc bx
         jmp loop
 
-    end:
+    end_loop:
+        ; Return
         popa
         ret
