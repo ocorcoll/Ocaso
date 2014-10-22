@@ -28,8 +28,8 @@ print_string:
         inc ebx
         add edx,2
         jmp loop
-
     end_loop:
-        ; Return
-        popa
-        ret
+
+    ; Return
+    popa
+    ret

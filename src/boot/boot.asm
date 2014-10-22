@@ -24,6 +24,7 @@ BEGIN_32_BITS:
 
     jmp $
 
+
 INITIAL_MSG: db "Loading Ocaso OS...",0
 
 ; Padding of 0s
