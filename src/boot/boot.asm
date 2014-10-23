@@ -18,10 +18,10 @@ KERNEL_OFFSET equ 0x1000
 
 ; Load 16-bit libs
 %include "src/boot/gdt.asm"
-%include "src/lib/io/print_string.asm"
-%include "src/lib/dev/load_disk.asm"
+%include "src/boot/print_string.asm"
+%include "src/boot/load_disk.asm"
 ; Load 32-bit libs
-%include "src/lib/io/print_string_32_bits.asm"
+%include "src/boot/print_string_32_bits.asm"
 %include "src/boot/switch_to_32_bits.asm"
 
 [bits 16]
