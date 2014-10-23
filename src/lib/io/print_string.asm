@@ -1,9 +1,3 @@
-; Change to protected 32-bits mode
-[bits 32]
-; Define video constants
-VIDEO_MEMORY equ 0xb8000
-WHITE_ON_BLACK equ 0x0f
-
 ;
 ; Print a string.
 ;   bx - String address.
@@ -11,24 +5,20 @@ WHITE_ON_BLACK equ 0x0f
 print_string:
     ; Save registers
     pusha
-    ; Set edx to point the video memory
-    mov edx,VIDEO_MEMORY
+    ; Sets the print BIOS routine
+    mov ah,0x0e
     ; Print loop
-    loop:
-        ; Set the character and attributes
-        mov al,[ebx]
-        mov ah,WHITE_ON_BLACK
-
+    print_string_loop:
         ; Checks if it is the end of the string
-        cmp byte al,0
-        je end_loop
-        ; Move the character to the video memory
-        mov [edx],ax
+        cmp byte [bx],0
+        je print_string_end_loop
+        ; Print character
+        mov al,[bx]
+        int 0x10
         ; Next character and jump
-        inc ebx
-        add edx,2
-        jmp loop
-    end_loop:
+        inc bx
+        jmp print_string_loop
+    print_string_end_loop:
 
     ; Return
     popa

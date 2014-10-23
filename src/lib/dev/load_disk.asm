@@ -2,9 +2,10 @@
 ; Load sectors from disk.
 ; dh - Number of sectors to read.
 ;
-disk_load:
+load_disk:
     ; Save registers
-    pusha
+    push ax
+    push cx
     push dx
 
     ; BIOS read sector function
@@ -13,7 +14,7 @@ disk_load:
     mov al,dh
     ; Select cylinder 0
     mov ch,0x00
-    ; Select cylinder 0
+    ; Select head 0
     mov dh,0x00
     ; Start reading from sector 2
     ; after the boot sector
@@ -28,7 +29,8 @@ disk_load:
     jne disk_error
 
     ; Return
-    popa
+    pop cx
+    pop ax
     ret
 
     disk_error:
