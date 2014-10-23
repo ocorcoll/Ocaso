@@ -13,10 +13,10 @@ kernel.bin: kernel_entry.o kernel.o
 	ld -m elf_i386 -o bin/kernel.bin -Ttext 0x1000 bin/kernel_entry.o bin/kernel.o --oformat binary
 
 kernel: boot.bin kernel.bin
-	cat bin/boot.bin bin/kernel.bin > bin/os-image
+	cat bin/boot.bin bin/kernel.bin > bin/ocaso-image
 
 run: kernel
-	qemu-system-i386 bin/os-image
+	qemu-system-i386 bin/ocaso-image
 
 clean:
 	rm -rf bin/*
