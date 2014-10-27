@@ -3,8 +3,8 @@ all: kernel
 boot.bin: 
 	nasm src/boot/boot.asm -f bin -o bin/boot.bin
 
-kernel.o: src/kernel/kernel.c
-	gcc -m32 -ffreestanding -c src/kernel/kernel.c -o bin/kernel.o
+kernel.o: src/kernel/kernel.c src/drivers/screen.c
+	gcc -m32 -ffreestanding -c $< -o bin/kernel.o
 
 kernel_entry.o: src/kernel/kernel_entry.asm
 	nasm src/kernel/kernel_entry.asm -f elf -o bin/kernel_entry.o

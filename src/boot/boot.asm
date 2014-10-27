@@ -30,8 +30,8 @@ load_kernel:
     call print_string
     ; Destination address
     mov bx,KERNEL_OFFSET
-    ; Load 15 sectors
-    mov dh,1
+    ; Load number of sectors
+    mov dh,3
     ; Boot drive
     mov dl,[BOOT_DRIVE]
     call load_disk
